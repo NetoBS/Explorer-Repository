@@ -5,7 +5,7 @@ import GlobalStyle from './styles/global';
 
 const App: React.FC = () => (
     <>
-        <MyRoutes />;
+        <MyRoutes />
         <GlobalStyle />
     </>
 );

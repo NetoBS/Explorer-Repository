@@ -1,6 +1,13 @@
 import React from 'react';
 import MyRoutes from './routes';
 
-const App: React.FC = () => <MyRoutes />;
+import GlobalStyle from './styles/global';
+
+const App: React.FC = () => (
+    <>
+        <MyRoutes />;
+        <GlobalStyle />
+    </>
+);
 
 export default App;

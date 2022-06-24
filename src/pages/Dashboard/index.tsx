@@ -1,6 +1,7 @@
 import React, { useState, useEffect, FormEvent } from "react";
 import { FiChevronRight } from 'react-icons/fi'
-import api from '../../services/api'
+
+import api from '../../services/api';
 
 import logoImg from '../../assets/logo.svg';
 
@@ -23,9 +24,9 @@ const Dashboard: React.FC = () => {
 
         if (storagedRepositories) {
             return JSON.parse(storagedRepositories);
-        } else {
-            return [];
-        }
+        } 
+        return [];
+        
     });
 
     useEffect(() => {
@@ -42,7 +43,7 @@ const Dashboard: React.FC = () => {
         try {    
             const response = await api.get(`repos/${newRepo}`);
 
-            const repository = response.data
+            const repository = response.data;
 
             setRepositories([ ...repositories, repository]);
             setNewRepo('');
@@ -54,7 +55,7 @@ const Dashboard: React.FC = () => {
     
     return (
         <>
-            <img src={logoImg} alt="Github Explores" />
+            <img src={logoImg} alt="Github Explorer" />
             <Title>Explore repositórios no Github</Title>
 
             <Form hasError={!!inputError} onSubmit={handleAddRepository}>
@@ -69,8 +70,8 @@ const Dashboard: React.FC = () => {
             { inputError && <Error>{inputError}</Error>}
 
             <Repositories>
-                {repositories.map(repository => (
-                    <a key={repository.full_name} href="teste">
+                {repositories.map((repository) => (
+                    <a key={repository.full_name} href={`/repositories/${repository.full_name}`}>
                         <img
                             src={repository.owner.avatar_url}
                             alt={repository.owner.login}
